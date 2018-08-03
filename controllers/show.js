@@ -4,27 +4,44 @@ const Show = require('../models/Show');
 const Tour = require('../models/Tour');
 
 module.exports = {
+  /**
+   * NAME: Get all shows
+   * DESCRIPTION: Get them all
+   * RETURNS: {array} An array of shows
+   */
   getAllShows(req, res) {
     Tour.findById(req.params.tourid)
       .then((tour) => res.json(tour))
       .catch((err) => res.status(400).json(err));
   },
 
-  // Get a show by ID
+  /**
+   * NAME: Get a show
+   * DESCRIPTION: Get a show by ID
+   * RETURNS: {object} The show searched for
+   */
   getById(req, res) {
     Show.findById(req.params.showid)
       .then((show) => res.json(show))
       .catch((err) => res.status(400).json(err));
   },
 
-  // Modify an existing show
+  /**
+   * NAME: Modify a show
+   * DESCRIPTION: Update the details of a show
+   * RETURNS: {object} The modified show
+   */
   modifyShow(req, res) {
     Show.findByIdAndUpdate(req.params.tourid, req.body)
       .then((show) => res.json(show))
       .catch((err) => res.status(400).json(err));
   },
 
-  // Delete an existing show
+  /**
+   * NAME: Delete a show
+   * DESCRIPTION: Find the tour the show belongs to, then find the show and delete. Next save the tour model
+   * RETURNS: {object} The tour that the show was deleted from
+   */
   deleteShow(req, res) {
     Tour.findById(req.params.tourid, (tourerr, tour) => {
       if (tourerr) {
@@ -53,37 +70,13 @@ module.exports = {
         });
       });
     });
-
-    Show.findById(req.params.showid, (err, show) => {
-      if (err) {
-        return res.status(400).json(err);
-      }
-
-      show.remove((showErr) => {
-        if (showErr) {
-          return res.status(400).json(showErr);
-        }
-
-        return Tour.findById(req.params.tourid, (tourErr, tour) => {
-          const index = tour.shows.indexOf(show._id);
-
-          if (index > -1) {
-            tour.shows.spice(index, 1);
-          }
-
-          tour.save((tourSaveErr) => {
-            if (tourSaveErr) {
-              return res.status(400).json(tourSaveErr);
-            }
-
-            return res.json(tour);
-          });
-        });
-      });
-    });
   },
 
-  // Create a new show
+  /**
+   * NAME: Create a show for a tour
+   * DESCRIPTION: Find a tour, create and save a show, add it to the tour and save.
+   * RETURNS: {object} The created show
+   */
   createNew(req, res) {
     const show = new Show({ _id: new mongoose.Types.ObjectId(), ...req.body });
 

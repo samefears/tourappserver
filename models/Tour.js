@@ -8,6 +8,7 @@ const TourSchema = new Schema({
   shows: [{ type: Schema.Types.ObjectId, ref: 'Show' }],
   tourManagers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   tourPass: String,
+  active: { type: Boolean, default: true },
   bulletins: [{ createdAt: { type: Date, default: Date.now }, message: String }],
   admins: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
