@@ -32,5 +32,5 @@ module.exports = {
       .save()
       .then((newBand) => res.json(newBand))
       .catch((err) => res.status(400).json(err));
-  }
+  },
 };

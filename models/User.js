@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   email: String,
   password: String,
   phoneNumber: String,
-  tours: [{ type: Schema.Types.ObjectId, ref: 'Tour' }]
+  tours: [{ type: Schema.Types.ObjectId, ref: 'Tour' }],
 });
 
 module.exports = mongoose.model('User', UserSchema);

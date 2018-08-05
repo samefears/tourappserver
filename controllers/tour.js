@@ -21,7 +21,7 @@ module.exports = {
     Tour.findById(req.params.tourid)
       .populate({
         path: 'admins',
-        select: ['firstName', 'lastName']
+        select: ['firstName', 'lastName'],
       })
       .then((tour) => res.json(tour))
       .catch((err) => res.status(400).json(err));
@@ -56,7 +56,7 @@ module.exports = {
       .then((tour) => {
         tour.bulletins.push({
           createdAt: Date.now(),
-          message: req.body.message
+          message: req.body.message,
         });
 
         return tour
@@ -83,7 +83,7 @@ module.exports = {
           .catch((errTour) => res.status(400).send(errTour));
       })
       .catch((err) => res.status(400).send(err));
-  }
+  },
 
   /**
    * TODO: Create endpoint for all tours associated with a user

@@ -18,7 +18,7 @@ const ShowSchema = new Schema({
   venue: { type: Schema.Types.ObjectId, ref: 'Venue' },
   wifi: {
     network: String,
-    password: String
+    password: String,
   },
   hotel: {
     streetNumber: String,
@@ -26,32 +26,32 @@ const ShowSchema = new Schema({
     city: String,
     region: String,
     country: String,
-    phoneNumber: String
+    phoneNumber: String,
   },
   guestList: {
     cap: Number,
     band: {
       name: String,
-      guest: [String]
-    }
+      guest: [String],
+    },
   },
   catering: {
     menu: String,
     location: String,
-    time: Date
+    time: Date,
   },
   greenRoom: {
     available: Boolean,
-    details: String
+    details: String,
   },
   dayRoom: {
     available: Boolean,
-    details: String
+    details: String,
   },
   promoterDetails: {
     phone: String,
-    email: String
-  }
+    email: String,
+  },
 });
 
 ShowSchema.pre('findById', function() {

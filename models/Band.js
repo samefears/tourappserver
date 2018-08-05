@@ -7,7 +7,7 @@ const BandSchema = new Schema({
   details: String,
   members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   crew: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  tourManager: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  tourManager: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
 BandSchema.pre('findById', function() {

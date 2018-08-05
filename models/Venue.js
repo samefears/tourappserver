@@ -12,11 +12,11 @@ const VenueSchema = new Schema({
     city: String,
     region: String,
     country: String,
-    phoneNumber: String
+    phoneNumber: String,
   },
   showers: {
     available: Boolean,
-    details: String
+    details: String,
   },
 
   pointsOfInterest: [
@@ -28,11 +28,11 @@ const VenueSchema = new Schema({
         city: String,
         region: String,
         country: String,
-        phoneNumber: String
+        phoneNumber: String,
       },
-      category: String
+      category: String,
     }
-  ]
+  ],
 });
 
 module.exports = mongoose.model('Venue', VenueSchema);

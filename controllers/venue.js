@@ -29,5 +29,5 @@ module.exports = {
     Venue.findByIdAndUpdate(req.params.venueid, req.body)
       .then((venue) => res.json(venue))
       .catch((err) => res.status(400).json(err));
-  }
+  },
 };
