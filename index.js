@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const { PORT } = require('./config');
-const { checkForAuth } = require('./middlewares');
+// const { checkForAuth } = require('./middlewares');
 
 const app = express();
 

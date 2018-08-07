@@ -1,8 +1,8 @@
 const tour = require('../controllers/tour');
 
-module.exports = (router) => {
+module.exports = (router, requireAuth) => {
   // Get all tours
-  router.get('/tours', tour.getAll);
+  router.get('/tours', requireAuth, tour.getAll);
 
   // Create new tour
   router.post('/tour/new', tour.createNew);

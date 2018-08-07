@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
 const User = require('../models/user');
 const { LOGIN_SECRET } = require('../config');
 
@@ -19,7 +18,7 @@ function setUserInfo(request) {
 }
 
 module.exports = {
-  login(req, res, next) {
+  login(req, res) {
     let userInfo = setUserInfo(req.user);
 
     res.status(200).json({
@@ -52,14 +51,14 @@ module.exports = {
         return res.status(422).json({ error: 'That email already exists.' });
       }
 
-      let user = new User(req.body);
+      const user = new User(req.body);
 
-      user.save(function(err, user) {
+      user.save(function(err) {
         if (err) {
           return next(err);
         }
 
-        let userInfo = setUserInfo(req.user);
+        let userInfo = setUserInfo(user);
 
         res.status(201).json({
           token: 'JWT ' + generateToken(userInfo),
