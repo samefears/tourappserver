@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
+const cors = require('cors');
 
 const { PORT } = require('./config');
 
@@ -9,16 +10,12 @@ const app = express();
 
 require('./models/db');
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json'
-  );
-  next();
+const corsMiddleware = cors({
+  origin: [process.env.CLIENT_URI, 'http://localhost:1234'],
 });
+
+app.use(corsMiddleware);
+app.options('*', corsMiddleware);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
