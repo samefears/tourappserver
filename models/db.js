@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const { DB } = require('../config');
 
 const DBuri = `mongodb://${DB.user}:${DB.pass}@${DB.URI}/${DB.name}`;
-mongoose.connect(DBuri);
+mongoose.connect(
+  DBuri,
+  { useNewUrlParser: true }
+);
 const db = mongoose.connection;
 
 /* eslint-disable-next-line no-console */
