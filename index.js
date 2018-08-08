@@ -11,7 +11,11 @@ const app = express();
 require('./models/db');
 
 const corsMiddleware = cors({
-  origin: [process.env.CLIENT_URI, 'http://localhost:1234'],
+  origin: [
+    process.env.CLIENT_URI,
+    /https:\/\/(.)+--tourdevapp.netlify.com/,
+    'http://localhost:1234'
+  ],
 });
 
 app.use(corsMiddleware);
