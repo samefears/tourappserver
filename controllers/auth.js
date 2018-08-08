@@ -60,6 +60,7 @@ exports.signin = function(req, res) {
     id: req.user.id,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
+    email: req.user.email,
   });
 };
 
@@ -95,6 +96,7 @@ exports.signup = function(req, res, next) {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
+        email: user.email,
       });
     });
   });
