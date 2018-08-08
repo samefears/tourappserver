@@ -1,5 +1,5 @@
 const jwt = require('jwt-simple');
-const User = require('../models/user');
+const User = require('../models/User');
 const moment = require('moment');
 const { LOGIN_SECRET } = require('../config');
 
