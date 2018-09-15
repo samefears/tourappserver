@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-require('./band')(router);
+require('./group')(router);
 require('./venue')(router);
 require('./tour')(router);
-require('./show')(router);
+require('./event')(router);
 
 module.exports = router;

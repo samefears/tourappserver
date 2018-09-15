@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const ShowSchema = new Schema({
-  bands: [{ type: Schema.Types.ObjectId, ref: 'Band' }],
+const EventSchema = new Schema({
+  groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
   busCall: Date,
   capacity: Number,
   carSharing: Boolean,
@@ -54,8 +54,8 @@ const ShowSchema = new Schema({
   },
 });
 
-ShowSchema.pre('findById', function() {
-  this.populate('band');
+EventSchema.pre('findById', function() {
+  this.populate('groups');
 });
 
-module.exports = mongoose.model('Show', ShowSchema);
+module.exports = mongoose.model('Event', EventSchema);

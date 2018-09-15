@@ -27,6 +27,8 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "jwt-simple": "^0.5.1",
+    "lodash.difference": "^4.5.0",
+    "lodash.uniq": "^4.5.0",
     "moment": "^2.22.2",
     "mongoose": "^5.2.5",
     "morgan": "^1.9.0",
