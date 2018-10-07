@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Show = require('../models/Show');
+const Event = require('../models/Event');
 const Tour = require('../models/Tour');
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
    * RETURNS: {object} The show searched for
    */
   getById(req, res) {
-    Show.findById(req.params.showid)
+    Event.findById(req.params.showid)
       .then((show) => res.json(show))
       .catch((err) => res.status(400).json(err));
   },
@@ -32,7 +32,7 @@ module.exports = {
    * RETURNS: {object} The modified show
    */
   modifyShow(req, res) {
-    Show.findByIdAndUpdate(req.params.tourid, req.body)
+    Event.findByIdAndUpdate(req.params.tourid, req.body)
       .then((show) => res.json(show))
       .catch((err) => res.status(400).json(err));
   },
@@ -48,7 +48,7 @@ module.exports = {
         return res.status(400).json(tourerr);
       }
 
-      return Show.findById(req.params.showid, (showerr, show) => {
+      return Event.findById(req.params.showid, (showerr, show) => {
         show.remove((showremoveerr) => {
           if (showremoveerr) {
             return res.status(400).json(showremoveerr);
@@ -78,7 +78,7 @@ module.exports = {
    * RETURNS: {object} The created show
    */
   createNew(req, res) {
-    const show = new Show({ _id: new mongoose.Types.ObjectId(), ...req.body });
+    const show = new Event({ _id: new mongoose.Types.ObjectId(), ...req.body });
 
     Tour.findById(req.params.tourid, (tourErr, tour) => {
       if (tourErr) {

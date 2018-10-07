@@ -50,6 +50,7 @@ exports.protectRoute = function(req, res, next) {
       return res.status(422).send({ error: 'You must be logged in' });
     }
 
+    req.auth_user_id = decoded.userId;
     next();
   });
 };
